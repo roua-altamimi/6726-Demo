@@ -51,7 +51,6 @@
       margin: 0 auto;
     }
 
-    /* Main */
     .main {
       padding: 30px 38px;
     }
@@ -94,12 +93,13 @@
     }
 
     .topbar-logo {
-      height: 40px;
-      max-width: 150px;
+      height: 48px;
+      max-width: 170px;
       object-fit: contain;
-      background: #ffffff;
-      border-radius: 6px;
-      padding: 4px 10px;
+      background: transparent;
+      border-radius: 0;
+      padding: 0;
+      display: block;
     }
 
     .topbar-subtitle {
@@ -257,7 +257,6 @@
       margin: 16px 0;
     }
 
-    /* Upload */
     .upload-box {
       border: 2px dashed var(--navy);
       border-radius: 6px;
@@ -349,7 +348,6 @@
       font-weight: 800;
     }
 
-    /* Popup */
     .popup-overlay {
       position: fixed;
       inset: 0;
@@ -530,7 +528,6 @@
             </div>
           </div>
 
-          <!-- JA FLOW -->
           <div id="flowJa" class="hidden">
 
             <div id="introPopup" class="popup-overlay hidden">
@@ -691,7 +688,6 @@
               </div>
             </div>
 
-            <!-- UPLOAD SECTION (appears when Opt-In step is reached) -->
             <div id="uploadSection" class="hidden">
               <div class="section">
                 <div class="section-header">
@@ -769,7 +765,6 @@
 
           </div>
 
-          <!-- NEIN FLOW -->
           <div id="flowNein" class="hidden">
 
             <div class="section">
@@ -988,7 +983,6 @@
     }
   });
 
-  /* Upload placeholder interactions */
   uploadBox.addEventListener("click", function () {
     bildUpload.click();
   });
