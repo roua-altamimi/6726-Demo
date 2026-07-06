@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E2E Sales - DEW21 Pitch Formular</title>
+
+  <style>
+    :root {
+      --bg-page: #f5f7fb;
+      --bg-sidebar: #ffffff;
+      --bg-main: #ffffff;
+      --bg-card: #ffffff;
+      --bg-soft: #f8fbff;
+
+      --blue: #2f7df6;
+      --blue-soft: #eaf2ff;
+      --blue-border: #cfe0ff;
+
+      --text-main: #1f2937;
+      --text-soft: #64748b;
+      --text-muted: #94a3b8;
+
+      --border: #e5eaf2;
+      --border-strong: #d8e0ec;
+
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background: var(--bg-page);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    .app-shell {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border);
+      padding: 28px 22px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      box-shadow: 8px 0 30px rgba(15, 23, 42, 0.03);
+    }
+
+    .logo-wrap {
+      text-align: center;
+      padding: 15px 10px 28px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 26px;
+    }
+
+    .logo-wrap img {
+      width: 170px;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .menu-title {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin: 24px 0 10px;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      color: var(--text-soft);
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .menu-item.active {
+      background: var(--blue-soft);
+      color: var(--blue);
+    }
+
+    .menu-icon {
+      width: 18px;
+      text-align: center;
+      opacity: 0.8;
+    }
+
+    /* Main */
+    .main {
+      padding: 30px 38px;
+    }
+
+    .topbar {
+      background: var(--bg-main);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 22px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .topbar-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .topbar-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: var(--blue-soft);
+      color: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 20px;
+      color: var(--text-main);
+    }
+
+    .topbar-subtitle {
+      color: var(--text-soft);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .form-card {
+      background: var(--bg-main);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .form-inner {
+      padding: 26px;
+    }
+
+    .section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      margin-bottom: 20px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 17px;
+      color: var(--text-main);
+    }
+
+    .section-note {
+      font-size: 12px;
+      color: var(--text-soft);
+      font-weight: 600;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-weight: 800;
+      font-size: 13.5px;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid var(--border-strong);
+      border-radius: 12px;
+      font-size: 14.5px;
+      color: var(--text-main);
+      background: #ffffff;
+      outline: none;
+      transition: 0.2s ease;
+    }
+
+    textarea {
+      min-height: 96px;
+      resize: vertical;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 4px rgba(47, 125, 246, 0.11);
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 4px;
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .checkbox-row input {
+      width: 18px;
+      height: 18px;
+      margin: 0;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .pitch {
+      background: linear-gradient(135deg, #f7fbff, #eef6ff);
+      border: 1px solid var(--blue-border);
+      border-left: 5px solid var(--blue);
+      color: #1d4f9f;
+      font-weight: 700;
+      padding: 15px;
+      border-radius: 14px;
+      margin: 16px 0;
+      line-height: 1.5;
+    }
+
+    .action-box {
+      background: #fffaf0;
+      border: 1px solid #f0dfbd;
+      border-left: 5px solid #d6a642;
+      color: #7a5513;
+      font-weight: 800;
+      padding: 15px;
+      border-radius: 14px;
+      margin: 16px 0;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      padding: 22px 26px;
+      border-top: 1px solid var(--border);
+      background: #fbfdff;
+    }
+
+    button {
+      border: none;
+      padding: 13px 22px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 14.5px;
+      font-weight: 800;
+      transition: 0.2s ease;
+    }
+
+    .save {
+      background: var(--blue);
+      color: #ffffff;
+      box-shadow: 0 10px 24px rgba(47, 125, 246, 0.28);
+    }
+
+    .save:hover {
+      background: #1f6ee8;
+      transform: translateY(-1px);
+    }
+
+    .reset {
+      background: #eef2f7;
+      color: var(--text-main);
+    }
+
+    .reset:hover {
+      background: #e3e9f2;
+    }
+
+    .success {
+      display: none;
+      margin: 0 26px 24px;
+      background: #ecfdf5;
+      border: 1px solid #b7f4d0;
+      color: #166534;
+      padding: 15px;
+      border-radius: 14px;
+      font-weight: 800;
+    }
+
+    /* Popup */
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.28);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .popup-card {
+      width: 560px;
+      max-width: 100%;
+      border-radius: 24px;
+      padding: 34px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      box-shadow:
+        0 30px 90px rgba(15, 23, 42, 0.22),
+        inset 0 1px 0 rgba(255,255,255,0.85);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      text-align: center;
+      animation: popupScale 0.35s ease;
+    }
+
+    .popup-card h3 {
+      margin: 0 0 14px;
+      font-size: 26px;
+      color: var(--blue);
+    }
+
+    .popup-card p {
+      margin: 10px 0;
+      font-size: 15.5px;
+      line-height: 1.6;
+      font-weight: 600;
+      color: var(--text-soft);
+    }
+
+    .popup-card strong {
+      display: block;
+      margin-top: 16px;
+      font-size: 17px;
+      color: var(--text-main);
+    }
+
+    .continue-btn {
+      margin-top: 26px;
+      background: var(--blue);
+      color: #ffffff;
+      padding: 12px 34px;
+      border-radius: 12px;
+      font-size: 15px;
+    }
+
+    .continue-btn:hover {
+      background: #1f6ee8;
+    }
+
+    @keyframes popupScale {
+      from {
+        transform: scale(0.94);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 850px) {
+      .app-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .menu-groups {
+        display: none;
+      }
+
+      .main {
+        padding: 20px;
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .main {
+        padding: 14px;
+      }
+
+      .form-inner {
+        padding: 18px;
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .buttons {
+        flex-direction: column;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="app-shell">
+
+  <aside class="sidebar">
+    <div class="logo-wrap">
+      <img src="logo.png" alt="E2E Sales Logo">
+    </div>
+
+    <div class="menu-groups">
+      <div class="menu-title">Allgemein</div>
+      <div class="menu-item">
+        <span class="menu-icon">▦</span>
+        Dashboard
+      </div>
+
+      <div class="menu-title">Geschäftlich</div>
+      <div class="menu-item">
+        <span class="menu-icon">▤</span>
+        Kunden
+      </div>
+      <div class="menu-item">
+        <span class="menu-icon">▧</span>
+        Verträge
+      </div>
+      <div class="menu-item">
+        <span class="menu-icon">▣</span>
+        Projekte
+      </div>
+
+      <div class="menu-title">Datenerfassung</div>
+      <div class="menu-item">
+        <span class="menu-icon">↥</span>
+        Import-Center
+      </div>
+
+      <div class="menu-title">Außendienst</div>
+      <div class="menu-item">
+        <span class="menu-icon">♙</span>
+        Außendienstmitarbeiter
+      </div>
+      <div class="menu-item active">
+        <span class="menu-icon">☰</span>
+        Aufgaben
+      </div>
+      <div class="menu-item">
+        <span class="menu-icon">▥</span>
+        Kartenübersicht
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <div class="topbar">
+      <div class="topbar-title">
+        <div class="topbar-icon">▣</div>
+        <div>
+          <h1>Task Collection Form</h1>
+          <div class="topbar-subtitle">Project-specific fields generated from CSV columns</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <form id="dewForm">
+
+        <div class="form-inner">
+
+          <div class="section">
+            <div class="section-header">
+              <h2>Stammdaten</h2>
+              <span class="section-note">DEW21 Kundendaten</span>
+            </div>
+
+            <div class="field">
+              <label>
+                Adresse
+                <span class="badge">Prefilled</span>
+              </label>
+              <input type="text" name="adresse" value="Günter-Samtlebe-Platz 1, 44135 Dortmund">
+            </div>
+
+            <div class="grid-2">
+              <div class="field">
+                <label>
+                  Name
+                  <span class="badge">Prefilled</span>
+                </label>
+                <input type="text" name="name" value="Müller">
+              </div>
+
+              <div class="field">
+                <label>
+                  Kunden-ID
+                  <span class="badge">Prefilled</span>
+                </label>
+                <input type="text" name="kundenId" value="158756">
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-header">
+              <h2>Kunde angetroffen?</h2>
+              <span class="section-note">Ablauf starten</span>
+            </div>
+
+            <div class="field">
+              <label>Status auswählen</label>
+              <select id="kundeStatus" name="kundeStatus">
+                <option value="">Bitte auswählen</option>
+                <option value="ja">Ja</option>
+                <option value="nein">Nein</option>
+                <option value="nichtMehrWohnhaft">Nicht mehr wohnhaft</option>
+                <option value="sonstiges">Sonstiges</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- JA FLOW -->
+          <div id="flowJa" class="hidden">
+
+            <div id="introPopup" class="popup-overlay hidden">
+              <div class="popup-card">
+                <h3>Super!</h3>
+
+                <p>
+                  Das klingt großartig! Dann schauen wir uns den Ablauf gemeinsam etwas genauer an.
+                </p>
+
+                <p>
+                  Wir besuchen ehemalige Kundinnen und Kunden, um sie wieder für DEW21 zu gewinnen.
+                </p>
+
+                <p>
+                  Könnten Sie sich grundsätzlich vorstellen, wieder DEW21-Kundin oder -Kunde zu werden?
+                </p>
+
+                <strong>Perfekt, dann starten wir.</strong>
+
+                <button type="button" id="continueIntroBtn" class="continue-btn">
+                  Weiter
+                </button>
+              </div>
+            </div>
+
+            <div id="flowWiederJa" class="hidden">
+
+              <div class="section">
+                <div class="field">
+                  <label>Was müssen wir tun, damit wir Sie wieder als Kundin oder Kunden gewinnen können?</label>
+
+                  <select id="kundenGrund" name="kundenGrund">
+                    <option value="">Bitte auswählen</option>
+                    <option value="angebotPreis">Gutes Angebot / Preis</option>
+                    <option value="sonstiges">Sonstiges</option>
+                  </select>
+                </div>
+
+                <div id="kundenGrundTextBox" class="hidden">
+                  <div class="field">
+                    <label>Sonstiges Freitextfeld</label>
+                    <textarea name="kundenGrundText" placeholder="Bitte Grund eintragen..."></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="section">
+                <div class="field">
+                  <label>Darf ich fragen, zu welchem Anbieter Sie gewechselt sind?</label>
+                  <input type="text" name="anbieterJa" placeholder="Anbieter eintragen">
+                </div>
+
+                <div class="field">
+                  <label>Antwort</label>
+                  <select name="anbieterAntwortJa">
+                    <option value="">Bitte auswählen</option>
+                    <option value="anbieter">Anbieter erhalten</option>
+                    <option value="keineAntwort">Keine Antwort erhalten</option>
+                  </select>
+                </div>
+
+                <div class="pitch">
+                  Gerne erstellen wir Ihnen ein starkes Vergleichsangebot.
+                </div>
+
+                <div class="field">
+                  <label>Möchten Sie, dass wir Sie anrufen oder lieber einen persönlichen Termin mit unserem Fachberater vereinbaren?</label>
+
+                  <select id="kontaktEntscheidung" name="kontaktEntscheidung">
+                    <option value="">Bitte auswählen</option>
+                    <option value="anruf">Anruf</option>
+                    <option value="termin">Termin</option>
+                    <option value="abgelehnt">Abgelehnt</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+
+            <div id="flowAnruf" class="hidden">
+              <div class="section">
+                <div class="pitch">
+                  Super, ein Fachberater meldet sich bei Ihnen.
+                </div>
+
+                <div class="grid-2">
+                  <div class="field">
+                    <label>Telefonnummer</label>
+                    <input type="tel" name="telefonAnruf" placeholder="Telefonnummer eintragen">
+                  </div>
+
+                  <div class="field">
+                    <label>E-Mail-Adresse</label>
+                    <input type="email" name="emailAnruf" placeholder="E-Mail-Adresse eintragen">
+                  </div>
+                </div>
+
+                <div class="pitch">
+                  Aufgrund des Datenschutzgesetzes dürfen wir Sie nur kontaktieren, wenn wir Ihre Erlaubnis haben.
+                </div>
+
+                <div class="field">
+                  <label>Double Opt-In</label>
+                  <select name="doubleOptInAnruf">
+                    <option value="">Bitte auswählen</option>
+                    <option value="sms">SMS</option>
+                    <option value="mail">Mail</option>
+                    <option value="beides">Beides</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div id="flowTermin" class="hidden">
+              <div class="section">
+                <div class="pitch">
+                  Super, dann vereinbaren wir gerne einen persönlichen Termin mit unserem Fachberater.
+                </div>
+
+                <div class="grid-2">
+                  <div class="field">
+                    <label>Gewünschtes Datum</label>
+                    <input type="date" name="terminDatum">
+                  </div>
+
+                  <div class="field">
+                    <label>Gewünschte Uhrzeit</label>
+                    <input type="time" name="terminUhrzeit">
+                  </div>
+                </div>
+
+                <div class="grid-2">
+                  <div class="field">
+                    <label>Telefonnummer</label>
+                    <input type="tel" name="telefonTermin" placeholder="Telefonnummer eintragen">
+                  </div>
+
+                  <div class="field">
+                    <label>E-Mail-Adresse</label>
+                    <input type="email" name="emailTermin" placeholder="E-Mail-Adresse eintragen">
+                  </div>
+                </div>
+
+                <div class="pitch">
+                  Aufgrund des Datenschutzgesetzes dürfen wir Sie nur kontaktieren, wenn wir Ihre Erlaubnis haben.
+                </div>
+
+                <div class="field">
+                  <label>Double Opt-In</label>
+                  <select name="doubleOptInTermin">
+                    <option value="">Bitte auswählen</option>
+                    <option value="sms">SMS</option>
+                    <option value="mail">Mail</option>
+                    <option value="beides">Beides</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div id="flowAbgelehnt" class="hidden">
+              <div class="section">
+                <div class="pitch">
+                  Dürfen wir Ihnen ein Angebot per Post senden?
+                </div>
+
+                <div class="field">
+                  <label>Angebot per Post senden?</label>
+                  <select id="postAngebot" name="postAngebot">
+                    <option value="">Bitte auswählen</option>
+                    <option value="ja">Ja</option>
+                    <option value="nein">Nein</option>
+                  </select>
+                </div>
+
+                <div class="action-box">
+                  Visitenkarte / Flyer mit QR-Code ausgehändigt?
+                </div>
+
+                <div class="field">
+                  <label>Ergebnis</label>
+                  <select id="flyerAbgelehnt" name="flyerAbgelehnt">
+                    <option value="">Bitte auswählen</option>
+                    <option value="ja">Ja</option>
+                    <option value="nein">Nein</option>
+                    <option value="grund">Grund</option>
+                  </select>
+                </div>
+
+                <div id="flyerAbgelehntGrundBox" class="hidden">
+                  <div class="field">
+                    <label>Grund / Freitextfeld</label>
+                    <textarea name="flyerAbgelehntGrund" placeholder="Grund eintragen..."></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- NEIN FLOW -->
+          <div id="flowNein" class="hidden">
+
+            <div class="section">
+              <h2>Status dokumentiert</h2>
+
+              <div class="field">
+                <label>Status / Notiz</label>
+                <textarea name="statusNein" placeholder="Kunde nicht angetroffen dokumentieren"></textarea>
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="field">
+                <label>Darf ich fragen, warum?</label>
+                <textarea name="warumNichtAngetroffen" placeholder="Freitextfeld oder keine Antwort erhalten"></textarea>
+              </div>
+
+              <div class="field">
+                <label>Darf ich fragen, zu welchem Anbieter Sie gewechselt sind?</label>
+                <input type="text" name="anbieterNichtAngetroffen" placeholder="Anbieter eintragen">
+              </div>
+
+              <div class="field">
+                <label>Antwort Anbieter</label>
+                <select name="anbieterAntwortNichtAngetroffen">
+                  <option value="">Bitte auswählen</option>
+                  <option value="anbieter">Anbieter erhalten</option>
+                  <option value="keineAntwort">Keine Antwort erhalten</option>
+                </select>
+              </div>
+
+              <div class="pitch">
+                Ich lasse Ihnen meine persönliche Visitenkarte da, falls Sie doch mal den Preis vergleichen möchten.
+              </div>
+
+              <div class="action-box">
+                Visitenkarte / Flyer mit QR-Code ausgehändigt?
+              </div>
+
+              <div class="field">
+                <label>Ergebnis</label>
+                <select id="flyerNichtAngetroffen" name="flyerNichtAngetroffen">
+                  <option value="">Bitte auswählen</option>
+                  <option value="ja">Ja</option>
+                  <option value="nein">Nein</option>
+                  <option value="grund">Grund</option>
+                </select>
+              </div>
+
+              <div id="flyerNichtAngetroffenGrundBox" class="hidden">
+                <div class="field">
+                  <label>Grund / Freitextfeld</label>
+                  <textarea name="flyerNichtAngetroffenGrund" placeholder="Grund eintragen..."></textarea>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div id="flowNichtMehrWohnhaft" class="hidden">
+            <div class="section">
+              <h2>Nicht mehr wohnhaft</h2>
+
+              <div class="field">
+                <label>Status dokumentiert</label>
+                <textarea name="statusNichtMehrWohnhaft" placeholder="Status dokumentieren"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div id="flowSonstiges" class="hidden">
+            <div class="section">
+              <h2>Sonstiges</h2>
+
+              <div class="field">
+                <label>Status dokumentiert</label>
+                <textarea name="statusSonstiges" placeholder="Sonstiges + Freitextfeld"></textarea>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="buttons">
+          <button type="submit" class="save">Formular speichern</button>
+          <button type="reset" class="reset">Zurücksetzen</button>
+        </div>
+
+        <div id="successMessage" class="success">
+          Formular wurde erfolgreich verarbeitet.
+        </div>
+
+      </form>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  const kundeStatus = document.getElementById("kundeStatus");
+
+  const flowJa = document.getElementById("flowJa");
+  const flowNein = document.getElementById("flowNein");
+  const flowNichtMehrWohnhaft = document.getElementById("flowNichtMehrWohnhaft");
+  const flowSonstiges = document.getElementById("flowSonstiges");
+
+  const introPopup = document.getElementById("introPopup");
+  const continueIntroBtn = document.getElementById("continueIntroBtn");
+
+  const flowWiederJa = document.getElementById("flowWiederJa");
+
+  const kundenGrund = document.getElementById("kundenGrund");
+  const kundenGrundTextBox = document.getElementById("kundenGrundTextBox");
+
+  const kontaktEntscheidung = document.getElementById("kontaktEntscheidung");
+  const flowAnruf = document.getElementById("flowAnruf");
+  const flowTermin = document.getElementById("flowTermin");
+  const flowAbgelehnt = document.getElementById("flowAbgelehnt");
+
+  const flyerNichtAngetroffen = document.getElementById("flyerNichtAngetroffen");
+  const flyerNichtAngetroffenGrundBox = document.getElementById("flyerNichtAngetroffenGrundBox");
+
+  const flyerAbgelehnt = document.getElementById("flyerAbgelehnt");
+  const flyerAbgelehntGrundBox = document.getElementById("flyerAbgelehntGrundBox");
+
+  const successMessage = document.getElementById("successMessage");
+
+  function show(element) {
+    element.classList.remove("hidden");
+  }
+
+  function hide(element) {
+    element.classList.add("hidden");
+  }
+
+  function hideAllMainFlows() {
+    hide(flowJa);
+    hide(flowNein);
+    hide(flowNichtMehrWohnhaft);
+    hide(flowSonstiges);
+
+    hide(introPopup);
+    hide(flowWiederJa);
+    hide(flowAnruf);
+    hide(flowTermin);
+    hide(flowAbgelehnt);
+  }
+
+  function hideContactFlows() {
+    hide(flowAnruf);
+    hide(flowTermin);
+    hide(flowAbgelehnt);
+  }
+
+  kundeStatus.addEventListener("change", function () {
+    hideAllMainFlows();
+
+    if (this.value === "ja") {
+      show(flowJa);
+      show(introPopup);
+    }
+
+    if (this.value === "nein") {
+      show(flowNein);
+    }
+
+    if (this.value === "nichtMehrWohnhaft") {
+      show(flowNichtMehrWohnhaft);
+    }
+
+    if (this.value === "sonstiges") {
+      show(flowSonstiges);
+    }
+  });
+
+  continueIntroBtn.addEventListener("click", function () {
+    hide(introPopup);
+    show(flowWiederJa);
+
+    flowWiederJa.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  });
+
+  kundenGrund.addEventListener("change", function () {
+    if (this.value === "sonstiges") {
+      show(kundenGrundTextBox);
+    } else {
+      hide(kundenGrundTextBox);
+    }
+  });
+
+  kontaktEntscheidung.addEventListener("change", function () {
+    hideContactFlows();
+
+    if (this.value === "anruf") {
+      show(flowAnruf);
+    }
+
+    if (this.value === "termin") {
+      show(flowTermin);
+    }
+
+    if (this.value === "abgelehnt") {
+      show(flowAbgelehnt);
+    }
+  });
+
+  flyerNichtAngetroffen.addEventListener("change", function () {
+    if (this.value === "grund") {
+      show(flyerNichtAngetroffenGrundBox);
+    } else {
+      hide(flyerNichtAngetroffenGrundBox);
+    }
+  });
+
+  flyerAbgelehnt.addEventListener("change", function () {
+    if (this.value === "grund") {
+      show(flyerAbgelehntGrundBox);
+    } else {
+      hide(flyerAbgelehntGrundBox);
+    }
+  });
+
+  document.getElementById("dewForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+
+    console.log("DEW21 Formular Daten:", data);
+
+    successMessage.style.display = "block";
+  });
+
+  document.getElementById("dewForm").addEventListener("reset", function () {
+    setTimeout(() => {
+      hideAllMainFlows();
+      hide(kundenGrundTextBox);
+      hide(flyerNichtAngetroffenGrundBox);
+      hide(flyerAbgelehntGrundBox);
+      successMessage.style.display = "none";
+    }, 0);
+  });
+</script>
+
+</body>
+</html>
