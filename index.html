@@ -7,25 +7,30 @@
 
   <style>
     :root {
-      --bg-page: #f5f7fb;
+      --navy: #10205f;
+      --navy-deep: #0a1544;
+      --navy-soft: #e9edf9;
+      --navy-border: #10205f;
+
+      --orange: #f18700;
+      --orange-dark: #d97600;
+      --orange-soft: #fff3e2;
+
+      --bg-page: #eef1f8;
       --bg-sidebar: #ffffff;
       --bg-main: #ffffff;
       --bg-card: #ffffff;
-      --bg-soft: #f8fbff;
+      --bg-soft: #f4f7fd;
 
-      --blue: #2f7df6;
-      --blue-soft: #eaf2ff;
-      --blue-border: #cfe0ff;
+      --text-main: #10205f;
+      --text-soft: #4a5680;
+      --text-muted: #8a93b5;
 
-      --text-main: #1f2937;
-      --text-soft: #64748b;
-      --text-muted: #94a3b8;
+      --border: #d7ddef;
+      --border-strong: #10205f;
 
-      --border: #e5eaf2;
-      --border-strong: #d8e0ec;
-
-      --shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
-      --radius: 18px;
+      --shadow: 0 18px 45px rgba(10, 21, 68, 0.10);
+      --radius: 10px;
     }
 
     * {
@@ -41,66 +46,9 @@
     }
 
     .app-shell {
-      display: grid;
-      grid-template-columns: 260px 1fr;
       min-height: 100vh;
-    }
-
-    /* Sidebar */
-    .sidebar {
-      background: var(--bg-sidebar);
-      border-right: 1px solid var(--border);
-      padding: 28px 22px;
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      box-shadow: 8px 0 30px rgba(15, 23, 42, 0.03);
-    }
-
-    .logo-wrap {
-      text-align: center;
-      padding: 15px 10px 28px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 26px;
-    }
-
-    .logo-wrap img {
-      width: 170px;
-      max-width: 100%;
-      display: block;
+      max-width: 1000px;
       margin: 0 auto;
-    }
-
-    .menu-title {
-      font-size: 11px;
-      font-weight: 800;
-      color: var(--text-muted);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin: 24px 0 10px;
-    }
-
-    .menu-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 14px;
-      border-radius: 12px;
-      color: var(--text-soft);
-      font-weight: 700;
-      font-size: 14px;
-      margin-bottom: 6px;
-    }
-
-    .menu-item.active {
-      background: var(--blue-soft);
-      color: var(--blue);
-    }
-
-    .menu-icon {
-      width: 18px;
-      text-align: center;
-      opacity: 0.8;
     }
 
     /* Main */
@@ -109,8 +57,8 @@
     }
 
     .topbar {
-      background: var(--bg-main);
-      border: 1px solid var(--border);
+      background: var(--navy);
+      border: 1px solid var(--navy);
       border-radius: var(--radius);
       padding: 18px 22px;
       margin-bottom: 22px;
@@ -130,9 +78,9 @@
     .topbar-icon {
       width: 34px;
       height: 34px;
-      border-radius: 10px;
-      background: var(--blue-soft);
-      color: var(--blue);
+      border-radius: 6px;
+      background: var(--orange);
+      color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -142,11 +90,20 @@
     h1 {
       margin: 0;
       font-size: 20px;
-      color: var(--text-main);
+      color: #ffffff;
+    }
+
+    .topbar-logo {
+      height: 40px;
+      max-width: 150px;
+      object-fit: contain;
+      background: #ffffff;
+      border-radius: 6px;
+      padding: 4px 10px;
     }
 
     .topbar-subtitle {
-      color: var(--text-soft);
+      color: #b8c2e8;
       font-size: 13px;
       font-weight: 600;
     }
@@ -166,7 +123,7 @@
     .section {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 18px;
+      border-radius: var(--radius);
       padding: 22px;
       margin-bottom: 20px;
     }
@@ -182,7 +139,7 @@
     h2 {
       margin: 0;
       font-size: 17px;
-      color: var(--text-main);
+      color: var(--navy);
     }
 
     .section-note {
@@ -208,7 +165,7 @@
       gap: 8px;
       font-weight: 800;
       font-size: 13.5px;
-      color: var(--text-main);
+      color: var(--navy);
       margin-bottom: 8px;
     }
 
@@ -216,13 +173,13 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: var(--blue-soft);
-      color: var(--blue);
+      background: var(--orange);
+      color: #ffffff;
       font-size: 10px;
       font-weight: 900;
       text-transform: uppercase;
       padding: 4px 8px;
-      border-radius: 999px;
+      border-radius: 3px;
     }
 
     input,
@@ -230,10 +187,11 @@
     textarea {
       width: 100%;
       padding: 13px 14px;
-      border: 1px solid var(--border-strong);
-      border-radius: 12px;
+      border: 2px solid var(--navy);
+      border-radius: 4px;
       font-size: 14.5px;
-      color: var(--text-main);
+      font-weight: 700;
+      color: var(--navy);
       background: #ffffff;
       outline: none;
       transition: 0.2s ease;
@@ -247,13 +205,14 @@
     input::placeholder,
     textarea::placeholder {
       color: var(--text-muted);
+      font-weight: 500;
     }
 
     input:focus,
     select:focus,
     textarea:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 4px rgba(47, 125, 246, 0.11);
+      border-color: var(--orange);
+      box-shadow: 0 0 0 4px rgba(241, 135, 0, 0.16);
     }
 
     .checkbox-row {
@@ -276,26 +235,68 @@
     }
 
     .pitch {
-      background: linear-gradient(135deg, #f7fbff, #eef6ff);
-      border: 1px solid var(--blue-border);
-      border-left: 5px solid var(--blue);
-      color: #1d4f9f;
+      background: var(--navy);
+      border: 1px solid var(--navy);
+      border-left: 5px solid var(--orange);
+      color: #ffffff;
       font-weight: 700;
       padding: 15px;
-      border-radius: 14px;
+      border-radius: 6px;
       margin: 16px 0;
       line-height: 1.5;
     }
 
     .action-box {
-      background: #fffaf0;
-      border: 1px solid #f0dfbd;
-      border-left: 5px solid #d6a642;
-      color: #7a5513;
+      background: var(--orange-soft);
+      border: 1px solid #f3ce9a;
+      border-left: 5px solid var(--orange);
+      color: #8a5200;
       font-weight: 800;
       padding: 15px;
-      border-radius: 14px;
+      border-radius: 6px;
       margin: 16px 0;
+    }
+
+    /* Upload */
+    .upload-box {
+      border: 2px dashed var(--navy);
+      border-radius: 6px;
+      background: var(--bg-soft);
+      padding: 26px 18px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .upload-box:hover {
+      border-color: var(--orange);
+      background: var(--orange-soft);
+    }
+
+    .upload-box .upload-icon {
+      font-size: 26px;
+      color: var(--orange);
+      margin-bottom: 8px;
+    }
+
+    .upload-box .upload-text {
+      font-weight: 800;
+      font-size: 14px;
+      color: var(--navy);
+    }
+
+    .upload-box .upload-hint {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .upload-filename {
+      margin-top: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--orange-dark);
     }
 
     .buttons {
@@ -303,37 +304,38 @@
       gap: 12px;
       padding: 22px 26px;
       border-top: 1px solid var(--border);
-      background: #fbfdff;
+      background: var(--bg-soft);
     }
 
     button {
       border: none;
-      padding: 13px 22px;
-      border-radius: 12px;
+      padding: 14px 24px;
+      border-radius: 4px;
       cursor: pointer;
-      font-size: 14.5px;
+      font-size: 15px;
       font-weight: 800;
       transition: 0.2s ease;
     }
 
     .save {
-      background: var(--blue);
+      background: var(--orange);
       color: #ffffff;
-      box-shadow: 0 10px 24px rgba(47, 125, 246, 0.28);
+      box-shadow: 0 10px 24px rgba(241, 135, 0, 0.32);
     }
 
     .save:hover {
-      background: #1f6ee8;
+      background: var(--orange-dark);
       transform: translateY(-1px);
     }
 
     .reset {
-      background: #eef2f7;
-      color: var(--text-main);
+      background: #ffffff;
+      color: var(--navy);
+      border: 2px solid var(--navy);
     }
 
     .reset:hover {
-      background: #e3e9f2;
+      background: var(--navy-soft);
     }
 
     .success {
@@ -343,7 +345,7 @@
       border: 1px solid #b7f4d0;
       color: #166534;
       padding: 15px;
-      border-radius: 14px;
+      border-radius: 6px;
       font-weight: 800;
     }
 
@@ -351,7 +353,7 @@
     .popup-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(15, 23, 42, 0.28);
+      background: rgba(10, 21, 68, 0.55);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       z-index: 9999;
@@ -364,15 +366,11 @@
     .popup-card {
       width: 560px;
       max-width: 100%;
-      border-radius: 24px;
+      border-radius: 12px;
       padding: 34px;
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid rgba(255, 255, 255, 0.75);
-      box-shadow:
-        0 30px 90px rgba(15, 23, 42, 0.22),
-        inset 0 1px 0 rgba(255,255,255,0.85);
-      backdrop-filter: blur(22px);
-      -webkit-backdrop-filter: blur(22px);
+      background: var(--navy);
+      border: 1px solid var(--navy-deep);
+      box-shadow: 0 30px 90px rgba(10, 21, 68, 0.45);
       text-align: center;
       animation: popupScale 0.35s ease;
     }
@@ -380,7 +378,7 @@
     .popup-card h3 {
       margin: 0 0 14px;
       font-size: 26px;
-      color: var(--blue);
+      color: var(--orange);
     }
 
     .popup-card p {
@@ -388,27 +386,27 @@
       font-size: 15.5px;
       line-height: 1.6;
       font-weight: 600;
-      color: var(--text-soft);
+      color: #c9d2f2;
     }
 
     .popup-card strong {
       display: block;
       margin-top: 16px;
       font-size: 17px;
-      color: var(--text-main);
+      color: #ffffff;
     }
 
     .continue-btn {
       margin-top: 26px;
-      background: var(--blue);
+      background: var(--orange);
       color: #ffffff;
-      padding: 12px 34px;
-      border-radius: 12px;
+      padding: 13px 36px;
+      border-radius: 4px;
       font-size: 15px;
     }
 
     .continue-btn:hover {
-      background: #1f6ee8;
+      background: var(--orange-dark);
     }
 
     @keyframes popupScale {
@@ -424,21 +422,6 @@
     }
 
     @media (max-width: 850px) {
-      .app-shell {
-        grid-template-columns: 1fr;
-      }
-
-      .sidebar {
-        position: relative;
-        height: auto;
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-      }
-
-      .menu-groups {
-        display: none;
-      }
-
       .main {
         padding: 20px;
       }
@@ -477,54 +460,6 @@
 
 <div class="app-shell">
 
-  <aside class="sidebar">
-    <div class="logo-wrap">
-      <img src="https://github.com/roua-altamimi/6726-Demo/blob/main/ChatGPT%20Image%20Jun%2030%2C%202026%20at%2002_12_20%20PM.png" alt="E2E Sales Logo">
-    </div>
-
-    <div class="menu-groups">
-      <div class="menu-title">Allgemein</div>
-      <div class="menu-item">
-        <span class="menu-icon">▦</span>
-        Dashboard
-      </div>
-
-      <div class="menu-title">Geschäftlich</div>
-      <div class="menu-item">
-        <span class="menu-icon">▤</span>
-        Kunden
-      </div>
-      <div class="menu-item">
-        <span class="menu-icon">▧</span>
-        Verträge
-      </div>
-      <div class="menu-item">
-        <span class="menu-icon">▣</span>
-        Projekte
-      </div>
-
-      <div class="menu-title">Datenerfassung</div>
-      <div class="menu-item">
-        <span class="menu-icon">↥</span>
-        Import-Center
-      </div>
-
-      <div class="menu-title">Außendienst</div>
-      <div class="menu-item">
-        <span class="menu-icon">♙</span>
-        Außendienstmitarbeiter
-      </div>
-      <div class="menu-item active">
-        <span class="menu-icon">☰</span>
-        Aufgaben
-      </div>
-      <div class="menu-item">
-        <span class="menu-icon">▥</span>
-        Kartenübersicht
-      </div>
-    </div>
-  </aside>
-
   <main class="main">
 
     <div class="topbar">
@@ -535,6 +470,8 @@
           <div class="topbar-subtitle">Project-specific fields generated from CSV columns</div>
         </div>
       </div>
+
+      <img class="topbar-logo" src="https://raw.githubusercontent.com/roua-altamimi/6726-Demo/main/ChatGPT%20Image%20Jun%2030%2C%202026%20at%2002_12_17%20PM.png" alt="E2E Sales Logo">
     </div>
 
     <div class="form-card">
@@ -754,6 +691,44 @@
               </div>
             </div>
 
+            <!-- UPLOAD SECTION (appears when Opt-In step is reached) -->
+            <div id="uploadSection" class="hidden">
+              <div class="section">
+                <div class="section-header">
+                  <h2>Bild-Upload</h2>
+                  <span class="section-note">Optionale Fotodokumentation</span>
+                </div>
+
+                <div class="field">
+                  <label>
+                    Bild hochladen
+                    <span class="badge">Platzhalter</span>
+                  </label>
+
+                  <div class="upload-box" id="uploadBox">
+                    <div class="upload-icon">↥</div>
+                    <div class="upload-text">Bild hochladen oder hierher ziehen</div>
+                    <div class="upload-hint">JPG, PNG oder HEIC – max. 10 MB</div>
+                    <div class="upload-filename hidden" id="uploadFilename"></div>
+                  </div>
+
+                  <input type="file" id="bildUpload" name="bildUpload" accept="image/*" class="hidden">
+                </div>
+
+                <div class="field">
+                  <label>Bildkategorie auswählen</label>
+                  <select id="bildKategorie" name="bildKategorie">
+                    <option value="">Bitte auswählen</option>
+                    <option value="klingelschild">Klingelschild</option>
+                    <option value="energieversorger">Aktueller Energieversorger</option>
+                    <option value="stromzaehler">Stromzähler</option>
+                    <option value="eLadestation">Stellplatz – Potenzial für E-Ladestation</option>
+                    <option value="photovoltaik">Dachfläche – Potenzial für Photovoltaik-Anlage</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
             <div id="flowAbgelehnt" class="hidden">
               <div class="section">
                 <div class="pitch">
@@ -914,6 +889,11 @@
   const flowTermin = document.getElementById("flowTermin");
   const flowAbgelehnt = document.getElementById("flowAbgelehnt");
 
+  const uploadSection = document.getElementById("uploadSection");
+  const uploadBox = document.getElementById("uploadBox");
+  const bildUpload = document.getElementById("bildUpload");
+  const uploadFilename = document.getElementById("uploadFilename");
+
   const flyerNichtAngetroffen = document.getElementById("flyerNichtAngetroffen");
   const flyerNichtAngetroffenGrundBox = document.getElementById("flyerNichtAngetroffenGrundBox");
 
@@ -941,12 +921,14 @@
     hide(flowAnruf);
     hide(flowTermin);
     hide(flowAbgelehnt);
+    hide(uploadSection);
   }
 
   function hideContactFlows() {
     hide(flowAnruf);
     hide(flowTermin);
     hide(flowAbgelehnt);
+    hide(uploadSection);
   }
 
   kundeStatus.addEventListener("change", function () {
@@ -993,14 +975,31 @@
 
     if (this.value === "anruf") {
       show(flowAnruf);
+      show(uploadSection);
     }
 
     if (this.value === "termin") {
       show(flowTermin);
+      show(uploadSection);
     }
 
     if (this.value === "abgelehnt") {
       show(flowAbgelehnt);
+    }
+  });
+
+  /* Upload placeholder interactions */
+  uploadBox.addEventListener("click", function () {
+    bildUpload.click();
+  });
+
+  bildUpload.addEventListener("change", function () {
+    if (this.files && this.files.length > 0) {
+      uploadFilename.textContent = "Ausgewählt: " + this.files[0].name;
+      show(uploadFilename);
+    } else {
+      uploadFilename.textContent = "";
+      hide(uploadFilename);
     }
   });
 
@@ -1037,6 +1036,7 @@
       hide(kundenGrundTextBox);
       hide(flyerNichtAngetroffenGrundBox);
       hide(flyerAbgelehntGrundBox);
+      hide(uploadFilename);
       successMessage.style.display = "none";
     }, 0);
   });
